@@ -1,0 +1,7 @@
+# The site as .github/workflows/pages.yml puts it together, if built here
+/_site/
+
+# Windows metadata created when copying files into WSL
+*:Zone.Identifier
+
+# (Synopsist/.gitignore keeps Synopsist's environment, data, and models out.)

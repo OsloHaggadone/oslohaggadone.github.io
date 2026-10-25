@@ -1,0 +1,43 @@
+# Publishes the site on GitHub Pages whenever main changes: the portfolio (the top of the
+# repository) at https://oslohaggadone.github.io, and Synopsist's website (Synopsist/player/) at
+# /Synopsist/. Only website files go out; the rest of Synopsist (its code, its catalog) and the notes
+# stay in the repository. On GitHub, Settings → Pages → Source must be "GitHub Actions".
+name: Publish the site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # a "Run workflow" button in the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# one publish at a time: a newer push waits for the running one
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Put the site together
+        run: |
+          shopt -s extglob
+          mkdir _site
+          # the portfolio: everything at the top but Synopsist and the notes (a glob leaves out
+          # dotfiles like .github and .gitignore)
+          cp -r !(Synopsist|_site|README.md|CLAUDE.md) _site/
+          cp -r Synopsist/player _site/Synopsist
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v5
