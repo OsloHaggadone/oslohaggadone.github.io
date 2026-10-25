@@ -1,0 +1,312 @@
+/* Oslo Haggadone: the portfolio's look. It's the light side of Synopsist's (the music website at
+   /Synopsist/), so the two feel like one place: the same fonts, Synopsist's Hollow Journey colors in
+   daylight, diamonds, and the same still skyline, in a pale mist, behind every page. It's kept plain
+   and quiet on purpose: text links instead of buttons, no boxes, no glows, and nothing moves (pages
+   come up at once, with no transition). Colors and sizes are set once, under :root. */
+
+/* --- fonts (fonts/, SIL Open Font License): Kazesawa for text, Exo for display ----------------- */
+
+@font-face { font-family: "Kazesawa"; src: url("fonts/kazesawa-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Kazesawa"; src: url("fonts/kazesawa-semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Exo"; src: url("fonts/exo-variable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+
+/* --- sizes and colors: Hollow Journey's light side ---------------------------------------------- */
+
+:root {
+  color-scheme: light;
+  --font: "Kazesawa", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --display: "Exo", "Kazesawa", ui-sans-serif, system-ui, sans-serif;
+  --gutter: clamp(1rem, 4vw, 3rem);
+
+  --bg: #e8f1fa;
+  --bg-2: #d9e6f5;
+  --field: #fff; /* the contact form's boxes */
+  --text: #08182a;
+  --muted: #37506a;
+  --faint: #4d647e;
+  --accent: #0066b5; /* links, and the page you're on */
+  --error: #b3261e; /* the contact form's "please fill this in" */
+  --line: color-mix(in srgb, var(--text) 12%, transparent);
+  --line-strong: color-mix(in srgb, var(--text) 26%, transparent);
+}
+
+/* --- base ------------------------------------------------------------------------------------ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 16px/1.6 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+main { flex: 1; }
+
+svg { width: 1.25em; height: 1.25em; fill: currentColor; flex-shrink: 0; }
+.icons { position: absolute; width: 0; height: 0; overflow: hidden; }
+a { color: var(--accent); text-underline-offset: 0.25em; }
+button, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+::selection { background: color-mix(in srgb, var(--accent) 25%, transparent); }
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 10;
+  padding: 0.6rem 1rem;
+  background: var(--field);
+  color: var(--text);
+}
+.skip-link:focus { top: 1rem; }
+
+/* --- the scenery behind every page: Synopsist's skyline in a pale mist ------------------------- */
+
+/* A white twelve-sided moon high in a corner of the sky, its light, and a skyline of leaning slabs
+   along the bottom (in each page), in three layers, far to near, the nearer ones a deeper blue (a
+   little paler than Synopsist's, so the pages stay quiet). Painted once; it never moves. */
+.scenery {
+  --moon-size: clamp(24px, 2.4vw, 36px);
+  --moon-x: 4.5vw; /* the moon's distance from the right edge */
+  --moon-y: 12vh; /* and from the top */
+  --moonlight: rgba(255, 255, 255, 0.8);
+  --far: color-mix(in srgb, var(--accent) 4%, var(--bg-2));
+  --mid: color-mix(in srgb, var(--accent) 7%, var(--bg-2));
+  --near: color-mix(in srgb, var(--accent) 10%, var(--bg-2));
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--bg) 35%, var(--bg-2));
+}
+.scenery i { position: absolute; }
+/* a bright bloom close around the moon, in a wide, faint glow */
+.halo {
+  top: calc(var(--moon-y) + var(--moon-size) / 2);
+  right: calc(var(--moon-x) + var(--moon-size) / 2);
+  width: 80vmin;
+  aspect-ratio: 1;
+  translate: 50% -50%;
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.9), transparent 22%),
+    radial-gradient(closest-side, var(--moonlight), transparent);
+  opacity: 0.68;
+}
+/* the sky lit along the whole horizon, most under the moon */
+.haze {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 75vh;
+  background:
+    radial-gradient(70% 65% at 78% 100%, var(--moonlight), transparent),
+    linear-gradient(to top, color-mix(in srgb, var(--moonlight) 50%, transparent), transparent 55%);
+  opacity: 0.65;
+}
+.moon {
+  top: var(--moon-y);
+  right: var(--moon-x);
+  width: var(--moon-size);
+  aspect-ratio: 1;
+  clip-path: polygon(98.3% 62.9%, 85.4% 85.4%, 62.9% 98.3%, 37.1% 98.3%, 14.6% 85.4%, 1.7% 62.9%, 1.7% 37.1%, 14.6% 14.6%, 37.1% 1.7%, 62.9% 1.7%, 85.4% 14.6%, 98.3% 37.1%);
+  background: #fff;
+}
+/* the skyline fills the screen (its viewBox is a screen's shape), keeping its foot on the bottom edge
+   and its middle in view on narrow screens */
+.skyline { position: absolute; inset: 0; width: 100%; height: 100%; }
+.skyline.far { fill: var(--far); }
+.skyline.mid { fill: var(--mid); }
+.skyline.near { fill: var(--near); }
+
+/* --- shared pieces ----------------------------------------------------------------------------- */
+
+/* the pages' actions are plain text: the accent, with an arrow, underlined on hover */
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: 600 1rem / 1.5 var(--display);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+}
+.go:hover { text-decoration: underline; }
+.go:disabled { color: var(--faint); text-decoration: none; cursor: progress; }
+.go svg { width: 1em; height: 1em; }
+
+/* "◆ Title ———" */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0;
+  font: 650 clamp(1.7rem, 4vw, 2.4rem) / 1.15 var(--display);
+  letter-spacing: 0.02em;
+}
+.section-title::before {
+  content: "";
+  flex: none;
+  width: 0.42em;
+  height: 0.42em;
+  transform: rotate(45deg);
+  background: var(--accent);
+}
+.section-title::after { content: ""; flex: 1; min-width: 2rem; height: 1px; background: var(--line); }
+
+/* the profile picture as a diamond */
+.diamond { position: relative; display: block; aspect-ratio: 1; }
+.diamond img { display: block; width: 100%; height: 100%; object-fit: cover; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+
+/* --- the top bar (every page but the front one) ------------------------------------------------ */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 64px;
+  padding: 0 var(--gutter);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-right: auto;
+  color: var(--text);
+  font: 650 0.88rem var(--display);
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.brand .diamond { width: 34px; }
+.topbar nav { display: flex; gap: clamp(1rem, 3vw, 1.75rem); }
+.topbar nav a {
+  padding: 0.35rem 0.1rem;
+  color: var(--muted);
+  font: 600 0.92rem var(--display);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  text-underline-offset: 0.5em;
+  text-decoration-thickness: 2px;
+}
+.topbar nav a:hover { color: var(--text); }
+.topbar nav a[aria-current="page"] { color: var(--text); text-decoration-line: underline; text-decoration-color: var(--accent); }
+
+/* --- the front page, laid out like Arcaea's main menu: the name, a few words, and the two pages on
+   the left (on the same edge as the other pages' content), and the picture as a big diamond on the
+   right. On phones the diamond goes above the name. ----------------------------------------------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: center;
+  align-items: center;
+  gap: 2rem clamp(2rem, 5vw, 4.5rem);
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 3rem var(--gutter) 1.5rem;
+}
+.hero-content { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+.hero .diamond { width: clamp(200px, 30vw, 400px); }
+/* a thin diamond frame just outside the picture's corners */
+.hero .diamond::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  transform: rotate(45deg);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+}
+/* the name lettered as on Synopsist's title screen, a word to a line */
+.name {
+  margin: 0;
+  font: 350 clamp(2rem, 4.8vw, 3.75rem) / 1.15 var(--display);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.name span { display: block; }
+.intro { max-width: 35rem; margin: 0; color: var(--muted); font-size: clamp(1.05rem, 2.4vw, 1.22rem); text-wrap: balance; }
+.hero nav { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; margin-top: 0.75rem; }
+.hero .go { font-size: 1.1rem; }
+
+/* --- the other pages ---------------------------------------------------------------------------- */
+
+.page { width: 100%; max-width: 1080px; margin: 0 auto; padding: clamp(2rem, 6vw, 3.75rem) var(--gutter) 3rem; }
+.lead { margin: 0.75rem 0 0; color: var(--muted); font-size: 1.05rem; }
+.page > .go { margin-top: 1.5rem; }
+
+/* projects: a screenshot beside a few words, what it's made with, and a link to it */
+.projects { display: grid; gap: 3.5rem; margin: clamp(1.75rem, 4vw, 2.5rem) 0 0; padding: 0; list-style: none; }
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.25rem, 3.5vw, 2.5rem);
+}
+.project-shot { display: block; overflow: hidden; border: 1px solid var(--line); border-radius: 3px; }
+.project-shot img { display: block; width: 100%; height: auto; }
+.project h2 { margin: 0; font: 650 1.65rem / 1.2 var(--display); letter-spacing: 0.01em; }
+.project-meta { margin: 0.3rem 0 0; color: var(--faint); font: 500 0.9rem var(--display); letter-spacing: 0.02em; }
+.project-text > p:not(.project-meta) { margin: 0.9rem 0 0; color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; margin: 1rem 0 1.25rem; padding: 0; list-style: none; color: var(--faint); font: 500 0.85rem / 1.5 var(--display); letter-spacing: 0.02em; }
+.tags li + li::before { content: "·" / ""; margin: 0 0.55em; }
+
+/* contact: a message form (site.js checks and sends it), then the address, for writing directly */
+.contact-form { display: grid; gap: 1.1rem; max-width: 36rem; margin-top: clamp(1.75rem, 4vw, 2.5rem); }
+.field { display: grid; gap: 0.35rem; }
+.field label { color: var(--muted); font: 600 0.85rem var(--display); letter-spacing: 0.02em; }
+.field input, .field textarea {
+  width: 100%;
+  margin: 0;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  background: var(--field);
+  color: var(--text);
+}
+.field textarea { min-height: 9rem; resize: vertical; }
+.field :is(input, textarea):focus { border-color: var(--accent); outline: 1px solid var(--accent); outline-offset: 0; }
+.field [aria-invalid="true"] { border-color: var(--error); }
+.field [aria-invalid="true"]:focus { outline-color: var(--error); }
+.field-error { margin: 0; color: var(--error); font-size: 0.88rem; }
+.field-error:empty, .honey { display: none; }
+.send { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.25rem; margin-top: 0.2rem; }
+.form-status { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.form-status.error { color: var(--error); }
+.direct { margin: 2.5rem 0 0; color: var(--muted); }
+.direct a { font-weight: 600; overflow-wrap: anywhere; }
+.copy { margin-left: 0.5rem; padding: 0; border: 0; background: none; color: var(--faint); font: 600 0.85rem var(--display); cursor: pointer; }
+.copy:hover { color: var(--text); text-decoration: underline; }
+
+/* --- the end of each page, centered: the profiles, then the copyright -------------------------- */
+
+.footer { padding: 1.5rem var(--gutter) 2rem; color: var(--muted); font: 500 0.85rem var(--display); text-align: center; }
+.footer p { margin: 0; }
+.profiles { display: flex; justify-content: center; gap: 1.5rem; margin: 0 0 0.4rem; padding: 0; list-style: none; }
+.profiles a { display: inline-flex; align-items: center; gap: 0.4rem; color: inherit; text-decoration: none; }
+.profiles a:hover { color: var(--text); text-decoration: underline; }
+.profiles svg { width: 1em; height: 1em; }
+
+/* --- small screens ----------------------------------------------------------------------------- */
+
+/* where the page's content reaches under the moon, the title's line would run into it */
+@media (max-width: 1150px) {
+  .section-title::after { display: none; }
+}
+@media (max-width: 760px) {
+  .project, .hero { grid-template-columns: minmax(0, 1fr); }
+  .hero .diamond { order: -1; width: clamp(140px, 44vw, 220px); }
+}
+@media (max-width: 30rem) {
+  .brand-name { display: none; } /* the picture alone links home */
+}
