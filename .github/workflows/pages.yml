@@ -31,9 +31,9 @@ jobs:
         run: |
           shopt -s extglob
           mkdir _site
-          # the portfolio: everything at the top but Synopsist and the notes (a glob leaves out
-          # dotfiles like .github and .gitignore)
-          cp -r !(Synopsist|_site|README.md|CLAUDE.md) _site/
+          # the portfolio: everything at the top but Synopsist, the notes, and the local preview
+          # (serve.py); a glob leaves out dotfiles like .github and .gitignore
+          cp -r !(Synopsist|_site|README.md|CLAUDE.md|serve.py) _site/
           cp -r Synopsist/player _site/Synopsist
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5

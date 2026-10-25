@@ -21,33 +21,151 @@
   <link rel="stylesheet" href="style.css">
   <script src="site.js" defer></script>
 </head>
-<body>
+<body class="home">
   <svg class="icons" aria-hidden="true">
     <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
     <symbol id="i-github" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol>
   </svg>
 
-  <!-- the skyline behind every page (style.css) -->
+  <!-- the skyline behind every page (style.css); on this page it rises as the page scrolls, each
+       layer on a ground reaching below the screen for it to lift (as in Synopsist's) -->
   <div class="scenery" aria-hidden="true">
     <i class="halo"></i><i class="haze"></i><i class="moon"></i>
-    <svg class="skyline far" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice"><polygon points="32,942 112,938 96,636 16,640"/><polygon points="172,939 236,941 247,601 183,599"/><polygon points="281,944 385,936 364,645 261,652"/><polygon points="437,938 495,941 514,580 456,577"/><polygon points="553,942 649,938 639,636 543,640"/><polygon points="704,937 774,942 797,609 728,604"/><polygon points="826,943 938,937 923,647 811,653"/><polygon points="980,939 1042,941 1054,595 992,593"/><polygon points="1081,942 1181,938 1170,626 1071,630"/><polygon points="1213,939 1257,941 1272,511 1228,509"/><polygon points="1289,937 1407,943 1423,637 1305,631"/><polygon points="1446,942 1516,937 1492,594 1422,599"/><polygon points="1523,938 1619,942 1629,644 1533,640"/></svg>
-    <svg class="skyline mid" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice"><polygon points="-57,936 93,944 105,704 -44,696"/><polygon points="121,945 238,935 215,664 97,674"/><polygon points="244,937 390,943 397,717 252,712"/><polygon points="424,942 520,937 506,676 410,681"/><polygon points="521,934 697,946 712,731 536,718"/><polygon points="723,942 835,938 826,684 715,688"/><polygon points="844,936 1012,944 1024,715 856,706"/><polygon points="1041,944 1145,936 1126,671 1022,678"/><polygon points="1138,937 1288,943 1295,717 1146,711"/><polygon points="1322,943 1442,937 1429,679 1309,685"/><polygon points="1441,934 1613,946 1629,712 1458,700"/></svg>
-    <svg class="skyline near" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice"><polygon points="-84,944 166,936 160,750 -90,758"/><polygon points="153,934 367,946 375,788 161,777"/><polygon points="356,942 618,938 614,740 352,744"/><polygon points="633,936 869,944 874,792 638,784"/><polygon points="871,945 1171,935 1165,755 865,765"/><polygon points="1135,940 1465,940 1465,738 1135,738"/><polygon points="1418,934 1638,946 1647,776 1427,764"/></svg>
+    <svg class="skyline far" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice"><polygon points="32,942 112,938 96,636 16,640"/><polygon points="172,939 236,941 247,601 183,599"/><polygon points="281,944 385,936 364,645 261,652"/><polygon points="437,938 495,941 514,580 456,577"/><polygon points="553,942 649,938 639,636 543,640"/><polygon points="704,937 774,942 797,609 728,604"/><polygon points="826,943 938,937 923,647 811,653"/><polygon points="980,939 1042,941 1054,595 992,593"/><polygon points="1081,942 1181,938 1170,626 1071,630"/><polygon points="1213,939 1257,941 1272,511 1228,509"/><polygon points="1289,937 1407,943 1423,637 1305,631"/><polygon points="1446,942 1516,937 1492,594 1422,599"/><polygon points="1523,938 1619,942 1629,644 1533,640"/><rect x="-400" y="934" width="2400" height="600"/></svg>
+    <svg class="skyline mid" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice"><polygon points="-57,936 93,944 105,704 -44,696"/><polygon points="121,945 238,935 215,664 97,674"/><polygon points="244,937 390,943 397,717 252,712"/><polygon points="424,942 520,937 506,676 410,681"/><polygon points="521,934 697,946 712,731 536,718"/><polygon points="723,942 835,938 826,684 715,688"/><polygon points="844,936 1012,944 1024,715 856,706"/><polygon points="1041,944 1145,936 1126,671 1022,678"/><polygon points="1138,937 1288,943 1295,717 1146,711"/><polygon points="1322,943 1442,937 1429,679 1309,685"/><polygon points="1441,934 1613,946 1629,712 1458,700"/><rect x="-400" y="934" width="2400" height="600"/></svg>
+    <svg class="skyline near" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice"><polygon points="-84,944 166,936 160,750 -90,758"/><polygon points="153,934 367,946 375,788 161,777"/><polygon points="356,942 618,938 614,740 352,744"/><polygon points="633,936 869,944 874,792 638,784"/><polygon points="871,945 1171,935 1165,755 865,765"/><polygon points="1135,940 1465,940 1465,738 1135,738"/><polygon points="1418,934 1638,946 1647,776 1427,764"/><rect x="-400" y="934" width="2400" height="600"/></svg>
   </div>
 
-  <!-- a title screen, like Arcaea's main menu: the name, a few words, and the two pages on the left,
-       and the picture on the right (the profiles are in the footer) -->
-  <main class="hero">
-    <div class="hero-content">
-      <h1 class="name"><span>Oslo</span> <span>Haggadone</span></h1>
-      <p class="intro">I’m currently pursuing a degree in Computer Science at UC&nbsp;Santa&nbsp;Cruz, exploring new ideas and new opportunities.</p>
-      <nav aria-label="Pages">
-        <a class="go" href="projects/">Projects<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="go" href="contact/">Contact<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </nav>
+  <main>
+    <!-- a title screen, like Arcaea's main menu: the name, a few words, and the two pages on the left,
+         and the picture on the right (the profiles are in the footer) -->
+    <div class="hero">
+      <div class="hero-content">
+        <h1 class="name"><span>Oslo</span> <span>Haggadone</span></h1>
+        <p class="intro">I’m currently pursuing a degree in Computer Science at UC&nbsp;Santa&nbsp;Cruz, exploring new ideas and new opportunities.</p>
+        <nav aria-label="Pages">
+          <a class="go" href="projects/">Projects<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="contact/">Contact<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </nav>
+      </div>
+      <span class="diamond"><img src="images/profile.jpg" alt="" width="512" height="512"></span>
     </div>
-    <span class="diamond"><img src="images/profile.jpg" alt="" width="512" height="512"></span>
+
+    <!-- below the title screen: who I am, what I'm building, and the music I've released. The words
+         are a first draft from what the site already says (the projects, Apple Music's listings):
+         rewrite them in your own. -->
+    <div class="more">
+      <section aria-labelledby="about-title">
+        <h2 class="section-title" id="about-title">About me</h2>
+        <div class="about">
+          <div class="about-text">
+            <p>I’m Oslo Haggadone. I study Computer Science at UC Santa Cruz, and I make music: since 2023 I’ve released two albums and two singles, starting with Hollow Journey, the soundtrack to a video game.</p>
+            <p>The two meet in Synopsist, the music website I’m building, where my songs stream for free in a player I made, each one analyzed moment by moment.</p>
+          </div>
+          <dl class="facts box">
+            <div><dt>Studying</dt><dd>Computer Science at UC Santa Cruz</dd></div>
+            <div><dt>Making</dt><dd>Music: two albums and two singles since 2023</dd></div>
+            <div><dt>Building</dt><dd>Synopsist, my music website</dd></div>
+            <div><dt>Working with</dt><dd>Python, JavaScript, HTML and CSS, Essentia, FastAPI, SQLite</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section aria-labelledby="projects-title">
+        <h2 class="section-title" id="projects-title">Projects</h2>
+        <article class="project box">
+          <a class="project-shot" href="Synopsist/" tabindex="-1" aria-hidden="true"><img src="images/synopsist.webp" alt="" width="1200" height="750" loading="lazy"></a>
+          <div class="project-text">
+            <h3>Synopsist</h3>
+            <p class="project-meta">Music website · In progress</p>
+            <p>My music website, where my songs stream for free in a custom web player. Each song is analyzed with Essentia (tempo, key, and where the chorus hits), and the visuals in full screen follow that analysis.</p>
+            <ul class="tags" aria-label="Made with">
+              <li>JavaScript</li>
+              <li>Python</li>
+              <li>Essentia</li>
+              <li>FastAPI</li>
+              <li>SQLite</li>
+            </ul>
+            <p class="go-row">
+              <a class="go" href="Synopsist/">Open Synopsist<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <a class="go" href="projects/">All projects<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- one box per release, newest first; covers in images/albums/. Each box has its own links:
+           Synopsist and Apple Music open that release itself, while Spotify, YouTube, and Amazon Music
+           open the artist's profiles until the release's own link is pasted in (on each, Share →
+           Copy link). -->
+      <section aria-labelledby="music-title">
+        <h2 class="section-title" id="music-title">Music</h2>
+        <p class="lead">Two albums and two singles so far. Every song is free to stream on <a href="Synopsist/">Synopsist</a>, and on Spotify, Apple Music, YouTube, and Amazon Music.</p>
+        <ul class="albums">
+          <li class="album box">
+            <a class="album-cover" href="Synopsist/#album-eternal-synopsis-single" tabindex="-1" aria-hidden="true"><img src="images/albums/eternal-synopsis.webp" alt="" width="400" height="400" loading="lazy"></a>
+            <div>
+              <h3>Eternal Synopsis</h3>
+              <p class="project-meta">Single · 2026 · 1 song · 2 min</p>
+              <p>My newest single, out April 30, 2026.</p>
+              <ul class="listen" aria-label="Listen to Eternal Synopsis">
+                <li><a href="Synopsist/#album-eternal-synopsis-single">Synopsist</a></li>
+                <li><a href="https://open.spotify.com/artist/04dhGsn2LanFxfQAyJD0JH" target="_blank" rel="noopener">Spotify</a></li>
+                <li><a href="https://music.apple.com/ca/album/eternal-synopsis-single/1892788764" target="_blank" rel="noopener">Apple Music</a></li>
+                <li><a href="https://www.youtube.com/@oslohaggadone" target="_blank" rel="noopener">YouTube</a></li>
+                <li><a href="https://www.amazon.com/music/player/artists/B0D8B6WF4L/oslo-haggadone" target="_blank" rel="noopener">Amazon Music</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="album box">
+            <a class="album-cover" href="Synopsist/#album-hollow-journey-beyond" tabindex="-1" aria-hidden="true"><img src="images/albums/hollow-journey-beyond.webp" alt="" width="400" height="400" loading="lazy"></a>
+            <div>
+              <h3>Hollow Journey Beyond</h3>
+              <p class="project-meta">Album · 2024 · 12 songs · 40 min</p>
+              <p>My second album: twelve songs, among them Facades, Flowers About, and Journey, and a 2024 remaster of Planetary Fields.</p>
+              <ul class="listen" aria-label="Listen to Hollow Journey Beyond">
+                <li><a href="Synopsist/#album-hollow-journey-beyond">Synopsist</a></li>
+                <li><a href="https://open.spotify.com/artist/04dhGsn2LanFxfQAyJD0JH" target="_blank" rel="noopener">Spotify</a></li>
+                <li><a href="https://music.apple.com/ca/album/hollow-journey-beyond/1770705214" target="_blank" rel="noopener">Apple Music</a></li>
+                <li><a href="https://www.youtube.com/@oslohaggadone" target="_blank" rel="noopener">YouTube</a></li>
+                <li><a href="https://www.amazon.com/music/player/artists/B0D8B6WF4L/oslo-haggadone" target="_blank" rel="noopener">Amazon Music</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="album box">
+            <a class="album-cover" href="Synopsist/#album-planetary-fields" tabindex="-1" aria-hidden="true"><img src="images/albums/planetary-fields.webp" alt="" width="400" height="400" loading="lazy"></a>
+            <div>
+              <h3>Planetary Fields</h3>
+              <p class="project-meta">Single · 2024 · 2 songs · 11 min</p>
+              <p>One song in two versions: the final version, and the Milestone version.</p>
+              <ul class="listen" aria-label="Listen to Planetary Fields">
+                <li><a href="Synopsist/#album-planetary-fields">Synopsist</a></li>
+                <li><a href="https://open.spotify.com/artist/04dhGsn2LanFxfQAyJD0JH" target="_blank" rel="noopener">Spotify</a></li>
+                <li><a href="https://music.apple.com/ca/album/planetary-fields-single/1754496728" target="_blank" rel="noopener">Apple Music</a></li>
+                <li><a href="https://www.youtube.com/@oslohaggadone" target="_blank" rel="noopener">YouTube</a></li>
+                <li><a href="https://www.amazon.com/music/player/artists/B0D8B6WF4L/oslo-haggadone" target="_blank" rel="noopener">Amazon Music</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="album box">
+            <a class="album-cover" href="Synopsist/#album-hollow-journey" tabindex="-1" aria-hidden="true"><img src="images/albums/hollow-journey.webp" alt="" width="400" height="400" loading="lazy"></a>
+            <div>
+              <h3>Hollow Journey</h3>
+              <p class="project-meta">Album · 2023 · 12 songs · 35 min</p>
+              <p>The original soundtrack of the video game Hollow Journey, with Into Space and Spacial Awareness among its twelve songs.</p>
+              <ul class="listen" aria-label="Listen to Hollow Journey">
+                <li><a href="Synopsist/#album-hollow-journey">Synopsist</a></li>
+                <li><a href="https://open.spotify.com/artist/04dhGsn2LanFxfQAyJD0JH" target="_blank" rel="noopener">Spotify</a></li>
+                <li><a href="https://music.apple.com/ca/album/hollow-journey-original-video-game-soundtrack/1714145567" target="_blank" rel="noopener">Apple Music</a></li>
+                <li><a href="https://www.youtube.com/@oslohaggadone" target="_blank" rel="noopener">YouTube</a></li>
+                <li><a href="https://www.amazon.com/music/player/artists/B0D8B6WF4L/oslo-haggadone" target="_blank" rel="noopener">Amazon Music</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
   </main>
 
   <footer class="footer">

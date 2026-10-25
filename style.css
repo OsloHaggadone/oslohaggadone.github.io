@@ -1,8 +1,9 @@
 /* Oslo Haggadone: the portfolio's look. It's the light side of Synopsist's (the music website at
    /Synopsist/), so the two feel like one place: the same fonts, Synopsist's Hollow Journey colors in
    daylight, diamonds, and the same still skyline, in a pale mist, behind every page. It's kept plain
-   and quiet on purpose: text links instead of buttons, no boxes, no glows, and nothing moves (pages
-   come up at once, with no transition). Colors and sizes are set once, under :root. */
+   and quiet on purpose: text links instead of buttons, no glows, boxes only for the front page's info
+   (the user asked for those), and nothing moves on its own: pages come up at once, and only the front
+   page's sky moves, as it scrolls. Colors and sizes are set once, under :root. */
 
 /* --- fonts (fonts/, SIL Open Font License): Kazesawa for text, Exo for display ----------------- */
 
@@ -118,8 +119,9 @@ button, input, textarea { font: inherit; color: inherit; }
   background: #fff;
 }
 /* the skyline fills the screen (its viewBox is a screen's shape), keeping its foot on the bottom edge
-   and its middle in view on narrow screens */
-.skyline { position: absolute; inset: 0; width: 100%; height: 100%; }
+   and its middle in view on narrow screens; on the front page, the ground under each layer, below
+   the screen, shows only when the parallax lifts it */
+.skyline { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .skyline.far { fill: var(--far); }
 .skyline.mid { fill: var(--mid); }
 .skyline.near { fill: var(--near); }
@@ -202,9 +204,10 @@ button, input, textarea { font: inherit; color: inherit; }
 .topbar nav a:hover { color: var(--text); }
 .topbar nav a[aria-current="page"] { color: var(--text); text-decoration-line: underline; text-decoration-color: var(--accent); }
 
-/* --- the front page, laid out like Arcaea's main menu: the name, a few words, and the two pages on
-   the left (on the same edge as the other pages' content), and the picture as a big diamond on the
-   right. On phones the diamond goes above the name. ----------------------------------------------- */
+/* --- the front page: a title screen laid out like Arcaea's main menu (the name, a few words, and the
+   two pages on the left, on the same edge as the other pages' content, and the picture as a big
+   diamond on the right; on phones the diamond goes above the name), then, scrolling down, About me,
+   Projects, and Music ---------------------------------------------------------------------------- */
 
 .hero {
   display: grid;
@@ -214,8 +217,10 @@ button, input, textarea { font: inherit; color: inherit; }
   gap: 2rem clamp(2rem, 5vw, 4.5rem);
   width: 100%;
   max-width: 1080px;
+  min-height: 100vh;
+  min-height: 100svh;
   margin: 0 auto;
-  padding: 3rem var(--gutter) 1.5rem;
+  padding: 3rem var(--gutter) 2rem;
 }
 .hero-content { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
 .hero .diamond { width: clamp(200px, 30vw, 400px); }
@@ -239,6 +244,37 @@ button, input, textarea { font: inherit; color: inherit; }
 .hero nav { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; margin-top: 0.75rem; }
 .hero .go { font-size: 1.1rem; }
 
+/* below the title screen. The info boxes (the facts, the project, the albums; the user asked for
+   them) are white glass with a hairline, nothing more. */
+.more { display: grid; gap: clamp(4rem, 9vw, 6rem); width: 100%; max-width: 1080px; margin: 0 auto; padding: clamp(2rem, 5vw, 3rem) var(--gutter) clamp(3rem, 7vw, 5rem); }
+.more .section-title { margin-bottom: 1.5rem; }
+.more .section-title:has(+ .lead) { margin-bottom: 0; }
+.more .lead { margin-bottom: 1.5rem; }
+.box { border: 1px solid var(--line); border-radius: 4px; background: rgba(255, 255, 255, 0.82); }
+
+/* about me: a few words, and the short facts beside them */
+.about { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+.about-text p { margin: 0 0 1rem; color: var(--muted); font-size: 1.08rem; }
+.about-text p:last-child { margin-bottom: 0; }
+.facts { display: grid; gap: 0.9rem; margin: 0; padding: clamp(1rem, 2.5vw, 1.4rem); }
+.facts dt { color: var(--faint); font: 600 0.82rem var(--display); letter-spacing: 0.02em; }
+.facts dd { margin: 0.1rem 0 0; }
+
+/* the project, as on the Projects page, in a box, with a way to the rest */
+.project.box { padding: clamp(1rem, 2.5vw, 1.4rem); }
+.go-row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin: 0; }
+
+/* music: one box per release, its cover beside its title, a line about it, and where to listen */
+.albums { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
+.album { display: grid; grid-template-columns: clamp(88px, 11vw, 128px) minmax(0, 1fr); gap: clamp(0.9rem, 2vw, 1.25rem); align-items: start; padding: clamp(0.9rem, 2vw, 1.2rem); }
+.album-cover { display: block; overflow: hidden; border: 1px solid var(--line); border-radius: 2px; }
+.album-cover img { display: block; width: 100%; height: auto; }
+.album h3 { margin: 0; font: 650 1.15rem / 1.25 var(--display); letter-spacing: 0.01em; }
+.album p:not(.project-meta) { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.95rem; }
+.listen { display: flex; flex-wrap: wrap; gap: 0.25rem 0.9rem; margin: 0.75rem 0 0; padding: 0; list-style: none; font: 600 0.85rem / 1.5 var(--display); letter-spacing: 0.02em; }
+.listen a { text-decoration: none; }
+.listen a:hover { text-decoration: underline; }
+
 /* --- the other pages ---------------------------------------------------------------------------- */
 
 .page { width: 100%; max-width: 1080px; margin: 0 auto; padding: clamp(2rem, 6vw, 3.75rem) var(--gutter) 3rem; }
@@ -255,7 +291,7 @@ button, input, textarea { font: inherit; color: inherit; }
 }
 .project-shot { display: block; overflow: hidden; border: 1px solid var(--line); border-radius: 3px; }
 .project-shot img { display: block; width: 100%; height: auto; }
-.project h2 { margin: 0; font: 650 1.65rem / 1.2 var(--display); letter-spacing: 0.01em; }
+.project :is(h2, h3) { margin: 0; font: 650 1.65rem / 1.2 var(--display); letter-spacing: 0.01em; }
 .project-meta { margin: 0.3rem 0 0; color: var(--faint); font: 500 0.9rem var(--display); letter-spacing: 0.02em; }
 .project-text > p:not(.project-meta) { margin: 0.9rem 0 0; color: var(--muted); }
 .tags { display: flex; flex-wrap: wrap; margin: 1rem 0 1.25rem; padding: 0; list-style: none; color: var(--faint); font: 500 0.85rem / 1.5 var(--display); letter-spacing: 0.02em; }
@@ -304,9 +340,30 @@ button, input, textarea { font: inherit; color: inherit; }
   .section-title::after { display: none; }
 }
 @media (max-width: 760px) {
-  .project, .hero { grid-template-columns: minmax(0, 1fr); }
+  .project, .hero, .about, .albums { grid-template-columns: minmax(0, 1fr); }
   .hero .diamond { order: -1; width: clamp(140px, 44vw, 220px); }
 }
 @media (max-width: 30rem) {
   .brand-name { display: none; } /* the picture alone links home */
 }
+
+/* --- motion: the front page's sky, as it scrolls ------------------------------------------------- */
+
+/* As the front page scrolls down from the title screen, the sky moves up, the nearer layers faster
+   and the moon hardly at all: Synopsist's title-screen parallax. The scrolling itself drives it (a
+   scroll-driven animation, which the graphics card runs), so it moves only while the page does;
+   where a browser can't, or reduced motion is asked for, it holds still. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .home .scenery > * {
+      animation: parallax linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0px 100vh;
+    }
+  }
+}
+@keyframes parallax { to { transform: translateY(calc(var(--rise) * -100vh)); } }
+.halo, .moon { --rise: 0.06; }
+.haze, .skyline.far { --rise: 0.14; }
+.skyline.mid { --rise: 0.26; }
+.skyline.near { --rise: 0.42; }
