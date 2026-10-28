@@ -5,3 +5,6 @@
 *:Zone.Identifier
 
 # (Synopsist/.gitignore keeps Synopsist's environment, data, and models out.)
+
+# Claude Code's notes for this project (CLAUDE.md, here and in Synopsist/): kept on this computer, not on GitHub
+CLAUDE.md
