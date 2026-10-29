@@ -321,6 +321,7 @@ button, input, textarea { font: inherit; color: inherit; }
 .form-status.error { color: var(--error); }
 .direct { margin: 2.5rem 0 0; color: var(--muted); }
 .direct a { font-weight: 600; overflow-wrap: anywhere; }
+.direct .email { display: inline-block; } /* the address and its Copy wrap to a new line together */
 .copy { margin-left: 0.5rem; padding: 0; border: 0; background: none; color: var(--faint); font: 600 0.85rem var(--display); cursor: pointer; }
 .copy:hover { color: var(--text); text-decoration: underline; }
 
