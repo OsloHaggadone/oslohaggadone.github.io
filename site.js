@@ -79,7 +79,7 @@ if (form) {
     const data = Object.fromEntries(new FormData(form));
     if (data._honey) return; // a spam bot filled in the hidden field
     for (const field of fields) data[field.name] = data[field.name].trim();
-    data._subject = `A message from ${data.name} (oslohaggadone.github.io)`;
+    data._subject = `A message from ${data.name} (oslohaggadone.com)`;
 
     send.disabled = true;
     say("Sending…");

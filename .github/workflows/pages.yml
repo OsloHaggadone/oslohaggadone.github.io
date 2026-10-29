@@ -1,7 +1,9 @@
 # Publishes the site on GitHub Pages whenever main changes: the portfolio (the top of the
-# repository) at https://oslohaggadone.github.io, and Synopsist's website (Synopsist/player/) at
+# repository) at https://oslohaggadone.com, and Synopsist's website (Synopsist/player/) at
 # /Synopsist/. Only website files go out; the rest of Synopsist (its code, its catalog) and the notes
-# stay in the repository. On GitHub, Settings → Pages → Source must be "GitHub Actions".
+# stay in the repository. On GitHub, Settings → Pages → Source must be "GitHub Actions", and the
+# domain is set there too, under Custom domain (no CNAME file: a workflow's site ignores one). GitHub
+# forwards every oslohaggadone.github.io address to the same path on it.
 name: Publish the site
 
 on:
