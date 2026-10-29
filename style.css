@@ -319,6 +319,9 @@ button, input, textarea { font: inherit; color: inherit; }
 .send { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.25rem; margin-top: 0.2rem; }
 .form-status { margin: 0; color: var(--muted); font-size: 0.95rem; }
 .form-status.error { color: var(--error); }
+.form-note { display: none; margin: 0; color: var(--muted); font-size: 0.95rem; }
+.form-note:target { display: block; }
+.form-note.error { color: var(--error); }
 .direct { margin: 2.5rem 0 0; color: var(--muted); }
 .direct a { font-weight: 600; overflow-wrap: anywhere; }
 .direct .email { display: inline-block; } /* the address and its Copy wrap to a new line together */

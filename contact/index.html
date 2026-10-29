@@ -49,10 +49,11 @@
     <h1 class="section-title">Contact</h1>
     <p class="lead">Send me a message, and I’ll write back to the email address you give.</p>
 
-    <!-- FormSubmit (formsubmit.co) emails what's sent to the address in the action, with the sender's
-         address to reply to. site.js checks the fields and sends it from the page; without
-         JavaScript, the form posts there itself. The hidden _honey field catches spam bots. -->
-    <form class="contact-form" id="contact-form" action="https://formsubmit.co/business@oslohaggadone.com" method="POST">
+    <!-- The site's own contact form on Cloudflare (contact-worker/, in the action) emails what's sent to
+         me, with the sender's address to reply to. site.js checks the fields and sends it from the
+         page; without JavaScript, the form posts there itself and comes back here, to #sent or
+         #not-sent. The hidden _honey field catches spam bots. -->
+    <form class="contact-form" id="contact-form" action="https://contact.oslohaggadone.workers.dev/" method="POST">
       <div class="field">
         <label for="name">Name</label>
         <input id="name" name="name" type="text" autocomplete="name" maxlength="100" required aria-describedby="name-error">
@@ -69,12 +70,13 @@
         <p class="field-error" id="message-error"></p>
       </div>
       <input class="honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <input type="hidden" name="_subject" value="A message from oslohaggadone.com">
-      <input type="hidden" name="_template" value="box">
       <div class="send">
         <button class="go" type="submit">Send message<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
         <p class="form-status" id="form-status" role="status"></p>
       </div>
+      <!-- shown only after a post without JavaScript (the address ends in #sent or #not-sent) -->
+      <p class="form-note" id="sent">Thanks! Your message is on its way.</p>
+      <p class="form-note error" id="not-sent">It didn’t send. You can email me at <a href="mailto:business@oslohaggadone.com">business@oslohaggadone.com</a> instead.</p>
     </form>
 
     <p class="direct">Or email me at <span class="email"><a id="address" href="mailto:business@oslohaggadone.com">business@oslohaggadone.com</a><button class="copy" type="button" id="copy-address" aria-live="polite">Copy</button></span></p>

@@ -1,0 +1,20 @@
+# Cloudflare runs the portfolio's contact form from this folder (src/index.js): the form at
+# oslohaggadone.com/contact/ posts here, and each message is emailed on. Live at
+# https://contact.oslohaggadone.workers.dev (the steps are in ../README.md, "The contact form").
+name = "contact"
+main = "src/index.js"
+compatibility_date = "2026-10-23"
+
+# No logs: they would keep each message and the address it came from
+[observability]
+enabled = false
+
+[vars]
+# the sites whose pages may send messages (separated by commas)
+ORIGINS = "https://oslohaggadone.com"
+
+# Email Routing's sending, free to an inbox verified there: the one business@oslohaggadone.com forwards
+# to. It's a secret, so the address isn't in this public repository: npx wrangler secret put CONTACT_TO
+[[send_email]]
+name = "EMAIL"
+allowed_sender_addresses = ["form@oslohaggadone.com"]

@@ -34,7 +34,8 @@ if (copyButton) {
 }
 
 // The contact form: a name, an email address that looks real, and a message, each checked before
-// anything is sent, then sent through FormSubmit (the form's action), which emails it to me.
+// anything is sent, then sent to the site's own contact form on Cloudflare (the form's action:
+// contact-worker/), which emails it to me.
 const form = document.getElementById("contact-form");
 if (form) {
   const status = document.getElementById("form-status");
@@ -79,24 +80,25 @@ if (form) {
     const data = Object.fromEntries(new FormData(form));
     if (data._honey) return; // a spam bot filled in the hidden field
     for (const field of fields) data[field.name] = data[field.name].trim();
-    data._subject = `A message from ${data.name} (oslohaggadone.com)`;
+    const subject = `A message from ${data.name} (oslohaggadone.com)`;
 
     send.disabled = true;
     say("Sending…");
     try {
-      const response = await fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+      // as text/plain, which a page may send to another site without asking first
+      const response = await fetch(form.action, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(data),
       });
       const result = await response.json();
-      if (!response.ok || String(result.success) !== "true") throw new Error(result.message);
+      if (!response.ok || result.success !== true) throw new Error(result.message);
       form.reset();
       say(`Thanks, ${data.name}! Your message is on its way.`);
     } catch {
       // not sent: offer it in their own email app instead, already written out
       const mailto = Object.assign(document.createElement("a"), {
-        href: `${document.getElementById("address").href}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(data.message)}`,
+        href: `${document.getElementById("address").href}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(data.message)}`,
         textContent: "email it to me",
       });
       say(["It didn’t send. You can ", mailto, " instead."], true);
