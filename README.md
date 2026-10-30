@@ -15,6 +15,18 @@ python3 serve.py
 ```
 @http://localhost:8080
 
+## Publishing
+
+A push to `main` publishes the site. The songs go first: they're in a private repository (Synopsist's
+README, "Songs"), and the site won't publish while one is missing.
+
+```bash
+cd ~/OsloHaggadone
+sh Synopsist/scripts/push_songs.sh              # 1. the songs (the private repository)
+git add -A && git commit -m "…" && git push     # 2. the site
+sh Synopsist/scripts/push_synopsist_repo.sh     # 3. Synopsist's own repository (a copy of its code)
+```
+
 ## The contact form
 
 The contact page's messages go through a small Cloudflare Worker (`contact-worker/`), which emails
