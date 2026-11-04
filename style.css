@@ -224,6 +224,10 @@ button, input, textarea { font: inherit; color: inherit; }
 }
 .hero-content { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
 .hero .diamond { width: clamp(200px, 30vw, 400px); }
+/* it opens Synopsist: only the diamond itself takes the click (the clipped picture), not the
+   square around it */
+.hero a.diamond { pointer-events: none; }
+.hero a.diamond img { pointer-events: auto; }
 /* a thin diamond frame just outside the picture's corners */
 .hero .diamond::after {
   content: "";
