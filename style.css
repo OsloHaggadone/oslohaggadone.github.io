@@ -272,12 +272,11 @@ button, input, textarea { font: inherit; color: inherit; }
 .album h3 { margin: 0; font: 650 1.15rem / 1.25 var(--display); letter-spacing: 0.01em; }
 .album p:not(.project-meta) { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.95rem; }
 /* the rest of the projects: a box each, as the releases are */
-.work { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.work { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
 .work > li { padding: clamp(0.9rem, 2vw, 1.2rem); }
 .work :is(h2, h3) { margin: 0; font: 650 1.15rem / 1.25 var(--display); letter-spacing: 0.01em; overflow-wrap: anywhere; }
 .work p:not(.project-meta) { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.95rem; }
 .work .tags { margin: 0.75rem 0 0; }
-.projects + .work { margin-top: clamp(2rem, 5vw, 3rem); } /* on the Projects page, after Synopsist's */
 .listen { display: flex; flex-wrap: wrap; gap: 0.25rem 0.9rem; margin: 0.75rem 0 0; padding: 0; list-style: none; font: 600 0.85rem / 1.5 var(--display); letter-spacing: 0.02em; }
 .listen a { text-decoration: none; }
 .listen a:hover { text-decoration: underline; }
@@ -303,6 +302,11 @@ button, input, textarea { font: inherit; color: inherit; }
 .project-text > p:not(.project-meta) { margin: 0.9rem 0 0; color: var(--muted); }
 .tags { display: flex; flex-wrap: wrap; margin: 1rem 0 1.25rem; padding: 0; list-style: none; color: var(--faint); font: 500 0.85rem / 1.5 var(--display); letter-spacing: 0.02em; }
 .tags li + li::before { content: "·" / ""; margin: 0 0.55em; }
+/* on the Projects page: a project without a screenshot in one column, and its main points */
+.project.text-only { grid-template-columns: minmax(0, 46rem); }
+.highlights { margin: 0.9rem 0 0; padding-left: 1.1rem; color: var(--muted); }
+.highlights li + li { margin-top: 0.35rem; }
+.project-text .listen { margin-top: 0; }
 
 /* contact: a message form (site.js checks and sends it), then the address, for writing directly */
 .contact-form { display: grid; gap: 1.1rem; max-width: 36rem; margin-top: clamp(1.75rem, 4vw, 2.5rem); }

@@ -60,77 +60,72 @@
         <h2 class="section-title" id="about-title">About me</h2>
         <div class="about">
           <div class="about-text">
-            <p>I’m Oslo Haggadone. I study Computer Science at UC Santa Cruz, and I make music: since 2023 I’ve released two albums and two singles, starting with Hollow Journey, the soundtrack to a video game.</p>
-            <p>The two meet in Synopsist, the music website I’m building, where my songs stream for free in a player I made, each one analyzed moment by moment.</p>
+            <p>I’m a Computer Science student at UC Santa Cruz and an undergraduate researcher in the AIEA Lab, where I work on explaining what individual neurons in neural networks have learned.</p>
+            <p>I build full-stack and machine learning projects, the biggest being Synopsist, the music platform behind my other work: since 2023 I’ve released two albums and two singles.</p>
           </div>
           <dl class="facts box">
-            <div><dt>Studying</dt><dd>Computer Science at UC Santa Cruz</dd></div>
-            <div><dt>Making</dt><dd>Music: two albums and two singles since 2023</dd></div>
-            <div><dt>Building</dt><dd>Synopsist, my music website</dd></div>
-            <div><dt>Working with</dt><dd>Python, JavaScript, C#, HTML and CSS, Essentia, FastAPI, Flask, SQLite, Unity</dd></div>
+            <div><dt>Studying</dt><dd>B.S. in Computer Science, UC Santa Cruz, 2028 · 3.81 GPA</dd></div>
+            <div><dt>Research</dt><dd>Neuron explanations for neural networks, AIEA Lab, with Prof. Leilani Gilpin</dd></div>
+            <div><dt>Awards</dt><dd>Undergraduate Dean’s Award, Dean’s List</dd></div>
+            <div><dt>Languages</dt><dd>Python, JavaScript, C, C#, SQL, HTML and CSS</dd></div>
+            <div><dt>Tools</dt><dd>PyTorch, TensorFlow, Cloudflare Workers, SQLite, Essentia, Git, Linux</dd></div>
           </dl>
         </div>
       </section>
 
       <section aria-labelledby="projects-title">
         <h2 class="section-title" id="projects-title">Projects</h2>
-        <article class="project box">
-          <a class="project-shot" href="Synopsist/" tabindex="-1" aria-hidden="true"><img src="images/synopsist.webp" alt="" width="1200" height="750" loading="lazy"></a>
-          <div class="project-text">
-            <h3>Synopsist</h3>
-            <p class="project-meta">Music website · In progress</p>
-            <p>My music website, where my songs stream for free in a custom web player. Each song is analyzed with Essentia (tempo, key, and where the chorus hits), and the visuals in full screen follow that analysis.</p>
-            <ul class="tags" aria-label="Made with">
-              <li>JavaScript</li>
-              <li>Python</li>
-              <li>Essentia</li>
-              <li>FastAPI</li>
-              <li>SQLite</li>
-            </ul>
-            <p class="go-row">
-              <a class="go" href="Synopsist/">Open Synopsist<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-              <a class="go" href="projects/">All projects<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </p>
-          </div>
-        </article>
-        <!-- the rest of the projects (on GitHub), newest first, a box each, as on the Projects page -->
         <ul class="work">
+          <li class="box">
+            <h3>Synopsist</h3>
+            <p class="project-meta">Music platform · In progress</p>
+            <p>A music streaming site and iPhone app with its own player, listening-data API, and audio-analysis pipeline, used by 35+ listeners.</p>
+            <ul class="tags" aria-label="Made with"><li>JavaScript</li><li>Python</li><li>Cloudflare Workers</li><li>SQLite</li><li>Essentia</li></ul>
+            <ul class="listen" aria-label="Links for Synopsist"><li><a href="Synopsist/">Open it</a></li><li><a href="https://github.com/OsloHaggadone/Synopsist" target="_blank" rel="noopener">GitHub</a></li></ul>
+          </li>
           <li class="box">
             <h3>SplitSlice</h3>
             <p class="project-meta">Command-line app · 2026</p>
-            <p>A pizza-ordering assistant for Domino’s, in the terminal. Describe an order in plain English (“2 lg pep and a couple sprites”) and change it the same way: four agents turn it into a real order, fit it to a budget, find the best coupon, and split the bill between friends, learning from past orders which toppings and sizes matter most. It prices orders with Domino’s but never places them.</p>
+            <p>A multi-agent pizza-ordering assistant: orders in plain English become priced Domino’s orders that fit a budget, with the best coupon and a split bill.</p>
             <ul class="tags" aria-label="Made with"><li>Python</li><li>Gemini API</li><li>SQLite</li><li>pizzapi</li></ul>
             <ul class="listen" aria-label="Links for SplitSlice"><li><a href="https://github.com/OsloHaggadone/SplitSlice" target="_blank" rel="noopener">GitHub</a></li></ul>
           </li>
           <li class="box">
+            <h3>ClawFix</h3>
+            <p class="project-meta">Hackathon · Nvidia × Asus Hack-a-Claw, 2026</p>
+            <p>A multi-agent code generator that writes, runs, and checks its own code, cutting errors from 35% to 12% on 50 benchmarks.</p>
+            <ul class="tags" aria-label="Made with"><li>Multi-agent systems</li><li>LLMs</li></ul>
+          </li>
+          <li class="box">
             <h3>Context-Aware-Connectivity</h3>
             <p class="project-meta">Hackathon · UCSC Computer Networking Association, 2026</p>
-            <p>A live chat room whose background changes with what people are talking about. The hackathon version, online, matches the words in each message to a theme (space, nature, ocean, or code) and shows everyone a matching photo; the newer one has an AI model read the conversation, generating a new scene when the topic changes and shifting its colors when the mood does.</p>
+            <p>A live chat room whose background changes with what people are talking about.</p>
             <ul class="tags" aria-label="Made with"><li>Python</li><li>Flask</li><li>Socket.IO</li><li>Groq</li><li>Pillow</li></ul>
             <ul class="listen" aria-label="Links for Context-Aware-Connectivity"><li><a href="https://context-aware-connectivity.onrender.com/" target="_blank" rel="noopener">Try it</a></li><li><a href="https://github.com/OsloHaggadone/Context-Aware-Connectivity" target="_blank" rel="noopener">GitHub</a></li></ul>
           </li>
           <li class="box">
             <h3>UpGrade</h3>
             <p class="project-meta">Hackathon · CruzHacks 2026</p>
-            <p>A study tracker that works like a ranked game. Students earn points for going to class, logging study hours (up to a daily limit), and scoring above a test’s median, with a bonus for improving, and climb from Bronze to Valedictorian. A profile ID saves their progress, and a test generator simulates a class’s scores.</p>
+            <p>A study tracker that works like a ranked game, with points for attendance, study time, and test scores.</p>
             <ul class="tags" aria-label="Made with"><li>JavaScript</li><li>CodeHS</li></ul>
             <ul class="listen" aria-label="Links for UpGrade"><li><a href="https://codehs.com/sandbox/id/cruzhacks-2026-upgrade-B4fvrr/run" target="_blank" rel="noopener">Try it</a></li><li><a href="https://github.com/OsloHaggadone/UpGrade" target="_blank" rel="noopener">GitHub</a></li></ul>
           </li>
           <li class="box">
             <h3>Buzz</h3>
             <p class="project-meta">Terminal game · 2026</p>
-            <p>A counting game: count up, and say “buzz” in place of any number that’s divisible by one of the buzz numbers or contains it. Pick a difficulty and the buzz numbers (or random ones), and play alone or against a bot; one mistake ends the game.</p>
+            <p>A counting game played alone or against a bot.</p>
             <ul class="tags" aria-label="Made with"><li>Python</li></ul>
             <ul class="listen" aria-label="Links for Buzz"><li><a href="https://github.com/OsloHaggadone/Buzz" target="_blank" rel="noopener">GitHub</a></li></ul>
           </li>
           <li class="box">
             <h3>Warped Caves</h3>
             <p class="project-meta">Video game · 2023</p>
-            <p>A short 2D side-scrolling shooter, made in Unity for my AP Computer Science Principles final: run, jump, duck, and aim up through a cave, shooting the enemies in the way, with a tutorial built into the game.</p>
+            <p>A 2D side-scrolling shooter made in Unity for AP Computer Science Principles.</p>
             <ul class="tags" aria-label="Made with"><li>C#</li><li>Unity</li></ul>
             <ul class="listen" aria-label="Links for Warped Caves"><li><a href="https://github.com/OsloHaggadone/Warped-Caves-Videogame-OsloHaggadone" target="_blank" rel="noopener">GitHub</a></li></ul>
           </li>
         </ul>
+        <p class="go-row"><a class="go" href="projects/">More about each project<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </section>
 
       <!-- one box per release, newest first; covers in images/albums/. Each box has its own links:
