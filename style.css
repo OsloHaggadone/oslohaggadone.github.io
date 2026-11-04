@@ -364,21 +364,23 @@ button, input, textarea { font: inherit; color: inherit; }
 
 /* --- motion: the front page's sky, as it scrolls ------------------------------------------------- */
 
-/* As the front page scrolls down from the title screen, the sky moves up, the nearer layers faster
-   and the moon hardly at all: Synopsist's title-screen parallax. The scrolling itself drives it (a
+/* As the front page scrolls down, the sky moves up, the nearer layers faster and the moon hardly at
+   all, all the way from the top of the page to its bottom (the user asked, Nov 4; it used to stop
+   after the title screen): Synopsist's title-screen parallax, stretched over the whole page. The scrolling itself drives it (a
    scroll-driven animation, which the graphics card runs), so it moves only while the page does;
    where a browser can't, or reduced motion is asked for, it holds still. */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: scroll()) {
     .home .scenery > * {
       animation: parallax linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0px 100vh;
+      animation-timeline: scroll(root); /* the whole page's scroll, top to bottom */
     }
   }
 }
 @keyframes parallax { to { transform: translateY(calc(var(--rise) * -100vh)); } }
-.halo, .moon { --rise: 0.06; }
-.haze, .skyline.far { --rise: 0.14; }
-.skyline.mid { --rise: 0.26; }
-.skyline.near { --rise: 0.42; }
+/* how far each rises by the bottom of the page, in screens: at most 0.6, or a layer's ground (two
+   thirds of a screen below it) would run out and show the page under it */
+.halo, .moon { --rise: 0.08; }
+.haze, .skyline.far { --rise: 0.2; }
+.skyline.mid { --rise: 0.36; }
+.skyline.near { --rise: 0.6; }
