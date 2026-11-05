@@ -1,6 +1,6 @@
 # Cloudflare runs the portfolio's contact form from this folder (src/index.js): the form at
-# oslohaggadone.com/contact/ posts here, and each message is emailed on. Live at
-# https://contact.oslohaggadone.workers.dev (the steps are in ../README.md, "The contact form").
+# oslohaggadone.com/contact/ posts here, and Synopsist's feedback page to /feedback, and each message
+# is emailed on. Live at https://contact.oslohaggadone.workers.dev.
 name = "contact"
 main = "src/index.js"
 compatibility_date = "2026-10-23"
